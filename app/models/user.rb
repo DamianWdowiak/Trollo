@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
-  validates :nickname, uniqueness: true
+  validates :nickname, uniqueness: true, presence: true
 end
