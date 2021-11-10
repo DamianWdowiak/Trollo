@@ -7,10 +7,11 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    origins ENV['WEB_URL']
 
     resource '*',
       headers: :any,
+      credentials: true,
       methods: :any
   end
 end
