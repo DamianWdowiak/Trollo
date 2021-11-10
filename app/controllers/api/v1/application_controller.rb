@@ -2,8 +2,7 @@
 
 module Api
   module V1
-    class ApplicationController < ActionController
-      include ActionController::MimeResponds
+    class ApplicationController < ::ApplicationController
 
       before_action :authenticate_user!
     end
