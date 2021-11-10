@@ -1,5 +1,11 @@
-class Api::V1::ApplicationController < ActionController::API
-  include ActionController::MimeResponds
+# frozen_string_literal: true
 
-  before_action :authenticate_user!
+module Api
+  module V1
+    class ApplicationController < ActionController
+      include ActionController::MimeResponds
+
+      before_action :authenticate_user!
+    end
+  end
 end
