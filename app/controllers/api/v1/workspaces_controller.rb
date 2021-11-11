@@ -17,7 +17,7 @@ module Api
         if workspace.save
           render json: workspace.to_json, status: :created
         else
-          render json: {}, status: :unprocessable_entity
+          render json: { errors: workspace.errors.messages }, status: :unprocessable_entity
         end
       end
 
@@ -25,7 +25,7 @@ module Api
         if @workspace.update(workspace_params)
           render json: @workspace.to_json, status: :ok
         else
-          render json: {}, status: :unprocessable_entity
+          render json: { errors: @workspace.errors.messages }, status: :unprocessable_entity
         end
       end
 
