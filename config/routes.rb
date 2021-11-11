@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       resources :firsts, only: %i[index]
       resources :workspaces do
-        resources :boards, only: %i[index show create update destroy]
+        resources :boards
       end
     end
   end
