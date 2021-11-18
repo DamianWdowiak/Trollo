@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1, defaults: { format: :json } do
       resources :firsts, only: %i[index]
+
       resources :workspaces do
-        resources :boards do
-          resources :lists
-        end
+        resources :boards
       end
+
+      resources :lists, only: %i[show create update destroy]
+      resources :cards, only: %i[show create update destroy]
     end
   end
 end
