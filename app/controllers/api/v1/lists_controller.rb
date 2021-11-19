@@ -3,15 +3,12 @@
 module Api
   module V1
     class ListsController < ApplicationController
-      before_action :set_lists
       before_action :set_list, only: %i[show update destroy]
-
-      def index; end
 
       def show; end
 
       def create
-        @list = @lists.new(list_params)
+        @list = List.new(list_params)
 
         return render json: { errors: @list.errors.messages }, status: :unprocessable_entity unless @list.save
       end
@@ -32,15 +29,11 @@ module Api
       private
 
       def list_params
-        params.require(:list).permit(:name, :position)
+        params.require(:list).permit(:name, :position, :board_id)
       end
 
       def set_list
-        @list = @lists.find(params[:id])
-      end
-
-      def set_lists
-        @lists = current_user.workspaces.find(params[:workspace_id]).boards.find(params[:board_id]).lists
+        @list = List.find(params[:id])
       end
     end
   end
