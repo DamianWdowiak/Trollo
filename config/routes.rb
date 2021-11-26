@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1, defaults: { format: :json } do
+      match 'users/current' => 'users#current', :via => :get
       resources :firsts, only: %i[index]
 
       resources :workspaces do
