@@ -8,7 +8,8 @@ module Api
       def show; end
 
       def create
-        @card = Card.new(card_params)
+        position = List.find(card_params[:list_id]).cards.size
+        @card = Card.new(card_params.merge({ position: position }))
 
         return render json: { errors: @card.errors.messages }, status: :unprocessable_entity unless @card.save
       end
@@ -29,7 +30,7 @@ module Api
       private
 
       def card_params
-        params.require(:card).permit(:title, :description, :list_id)
+        params.require(:card).permit(:title, :description, :list_id, :position)
       end
 
       def set_card

@@ -8,7 +8,8 @@ module Api
       def show; end
 
       def create
-        @list = List.new(list_params)
+        position = Board.find(list_params[:board_id]).lists.size
+        @list = List.new(list_params.merge({ position: position }))
 
         return render json: { errors: @list.errors.messages }, status: :unprocessable_entity unless @list.save
       end

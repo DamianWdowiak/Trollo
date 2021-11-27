@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_160852) do
   create_table "cards", force: :cascade do |t|
     t.string "title", null: false
     t.string "description"
+    t.integer "position", default: 0, null: false
     t.bigint "list_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -52,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_160852) do
 
   create_table "lists", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "position"
+    t.integer "position", default: 0, null: false
     t.bigint "board_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
