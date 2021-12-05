@@ -12,7 +12,12 @@ Rails.application.routes.draw do
       end
 
       resources :lists, only: %i[show create update destroy]
-      resources :cards, only: %i[show create update destroy]
+      resources :cards, only: %i[show create update destroy] do
+        member do
+          post :upload_file
+          delete :delete_file
+        end
+      end
     end
   end
 end
