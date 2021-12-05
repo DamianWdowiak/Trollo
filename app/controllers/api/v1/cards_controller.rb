@@ -3,13 +3,12 @@
 module Api
   module V1
     class CardsController < ApplicationController
-      before_action :set_card, only: %i[show update destroy]
+      before_action :set_card, only: %i[show update destroy upload_file delete_file]
 
       def show; end
 
       def create
-        position = List.find(card_params[:list_id]).cards.size
-        @card = Card.new(card_params.merge({ position: position }))
+        @card = Card.new(card_params)
 
         return render json: { errors: @card.errors.messages }, status: :unprocessable_entity unless @card.save
       end
@@ -27,10 +26,22 @@ module Api
         head :no_content
       end
 
+      def upload_file
+        @card.files.attach(params[:file])
+
+        head :no_content
+      end
+
+      def delete_file
+        @card.files.find(params[:file_id]).purge_later
+
+        head :no_content
+      end
+
       private
 
       def card_params
-        params.require(:card).permit(:title, :description, :list_id, :position)
+        params.require(:card).permit(:title, :description, :list_id, :position, files: [])
       end
 
       def set_card
