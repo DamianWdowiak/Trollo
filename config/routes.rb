@@ -18,6 +18,7 @@ Rails.application.routes.draw do
           delete :delete_file
         end
       end
+      resources :comments, only: %i[show create update destroy]
     end
   end
 end
