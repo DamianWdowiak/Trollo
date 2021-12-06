@@ -8,6 +8,7 @@ class Card < ApplicationRecord
   validates :position, uniqueness: { scope: :list }
 
   has_many_attached :files
+  has_many :comments
 
   before_validation :set_position
 
