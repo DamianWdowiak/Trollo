@@ -9,7 +9,7 @@ class Card < ApplicationRecord
 
   has_many_attached :files
   has_many :comments
-  has_many :tags
+  has_and_belongs_to_many :tags
 
   before_validation :set_position
 

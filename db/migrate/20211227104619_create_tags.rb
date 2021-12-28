@@ -5,7 +5,7 @@ class CreateTags < ActiveRecord::Migration[6.1]
       t.string :color, default: 'white'
 
       t.belongs_to :board
-      t.belongs_to :card
+      t.has_and_belongs_to_many :card
 
       t.timestamps
     end

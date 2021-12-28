@@ -1,6 +1,6 @@
 class Tag < ApplicationRecord
   belongs_to :board
-  belongs_to :card
+  has_and_belongs_to_many :card
 
   validates :name, presence: true
   validates :color, presence: true
