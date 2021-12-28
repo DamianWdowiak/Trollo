@@ -9,6 +9,7 @@ class Board < ApplicationRecord
   has_many :board_members, dependent: :destroy
   has_many :members, through: :board_members
   has_many :lists, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   validates :name, presence: true
 end
