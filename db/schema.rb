@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 2021_12_27_104619) do
     t.index ["list_id"], name: "index_cards_on_list_id"
   end
 
+  create_table "cards_tags", id: false, force: :cascade do |t|
+    t.bigint "card_id"
+    t.bigint "tag_id"
+    t.index ["card_id"], name: "index_cards_tags_on_card_id"
+    t.index ["tag_id"], name: "index_cards_tags_on_tag_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "text"
     t.bigint "card_id"
@@ -102,11 +109,9 @@ ActiveRecord::Schema.define(version: 2021_12_27_104619) do
     t.string "name", null: false
     t.string "color", default: "white"
     t.bigint "board_id"
-    t.bigint "card_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["board_id"], name: "index_tags_on_board_id"
-    t.index ["card_id"], name: "index_tags_on_card_id"
   end
 
   create_table "users", force: :cascade do |t|
