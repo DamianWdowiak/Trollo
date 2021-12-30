@@ -3,7 +3,7 @@
 module Api
   module V1
     class CardsController < ApplicationController
-      before_action :set_card, only: %i[show update destroy upload_file delete_file add_tag]
+      before_action :set_card, only: %i[show update destroy upload_file delete_file add_tag delete_tag]
 
       def show; end
 

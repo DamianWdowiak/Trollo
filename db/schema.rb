@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2021_12_27_104619) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
-    t.string "color", default: "white"
+    t.integer "color", default: 0
     t.bigint "board_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
