@@ -12,10 +12,13 @@ Rails.application.routes.draw do
       end
 
       resources :lists, only: %i[show create update destroy]
+      resources :tags, only: %i[create update destroy]
       resources :cards, only: %i[show create update destroy] do
         member do
           post :upload_file
           delete :delete_file
+          post :add_tag
+          delete :delete_tag
         end
       end
       resources :comments, only: %i[show create update destroy]

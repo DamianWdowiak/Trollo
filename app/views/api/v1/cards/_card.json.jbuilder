@@ -9,3 +9,7 @@ end
 json.comments do
   json.array! card.comments.order("created_at DESC"), partial: 'api/v1/comments/comment', as: :comment
 end
+
+json.tags do
+  json.array! card.tags, partial: 'api/v1/tags/tag', as: :tag
+end
